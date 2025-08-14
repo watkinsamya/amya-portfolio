@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>✨ Amya Watkins — Portfolio ✨</title>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Inter:wght@300;400;500;600&display=swap');
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --tickle-pink:#F283AF;--champagne:#FBF4EB;--blush:#FBD9E5;
+      --cherry-blossom:#FBD9E5;--raspberry-rose:#C43670;--sunset:#F5CC97;
+    }
+    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,var(--champagne) 0%,var(--blush) 50%,var(--sunset) 100%);min-height:100vh;overflow-x:hidden}
+
+    /* Floating bits */
+    .floating-decor{position:fixed;pointer-events:none;z-index:1}
+    .star{animation:float 6s ease-in-out infinite}
+    .cherry{animation:float 8s ease-in-out infinite reverse}
+    .spark{animation:sparkle 4s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-20px) rotate(180deg)}}
+    @keyframes sparkle{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.2)}}
+
+    /* Header */
+    .header{position:fixed;top:0;width:100%;background:rgba(251,244,235,.9);backdrop-filter:blur(10px);z-index:100;padding:1rem 2rem;box-shadow:0 4px 20px rgba(196,54,112,.1)}
+    .nav{display:flex;justify-content:center;gap:2rem}
+    .nav-link{text-decoration:none;color:var(--raspberry-rose);font-weight:500;padding:.5rem 1rem;border-radius:20px;transition:.3s}
+    .nav-link:hover{background:linear-gradient(45deg,var(--tickle-pink),var(--raspberry-rose));color:#fff;transform:translateY(-2px);box-shadow:0 4px 15px rgba(242,131,175,.4)}
+
+    /* Hero */
+    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative}
+    .hero-content{max-width:800px;z-index:10}
+    .profile-pic{width:220px;height:220px;border-radius:50%;background:linear-gradient(45deg,var(--tickle-pink),var(--sunset));padding:8px;margin:0 auto 2rem;box-shadow:0 10px 30px rgba(242,131,175,.3);animation:pulse 3s ease-in-out infinite}
+    .profile-pic img{width:100%;height:100%;border-radius:50%;object-fit:cover;background:var(--champagne)}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+    .hero-title{font-family:'Fredoka One',cursive;font-size:clamp(3rem,8vw,6rem);background:linear-gradient(45deg,var(--raspberry-rose),var(--tickle-pink),var(--sunset));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:3px 3px 0 rgba(196,54,112,.3);margin-bottom:1rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,.1))}
+    .hero-subtitle{font-size:1.5rem;color:var(--raspberry-rose);margin-bottom:2rem;font-weight:300}
+    .cta-button{display:inline-block;padding:1rem 2rem;background:linear-gradient(45deg,var(--tickle-pink),var(--raspberry-rose));color:#fff;text-decoration:none;border-radius:50px;font-weight:600;font-size:1.1rem;box-shadow:0 8px 25px rgba(242,131,175,.4);transition:.3s;position:relative;overflow:hidden}
+    .cta-button:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(242,131,175,.6)}
+    .cta-button::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:left .5s}
+    .cta-button:hover::before{left:100%}
+
+    /* Sections */
+    .section{padding:4rem 2rem;max-width:1200px;margin:0 auto}
+    .section-title{font-family:'Fredoka One',cursive;font-size:3rem;text-align:center;margin-bottom:3rem;background:linear-gradient(45deg,var(--raspberry-rose),var(--tickle-pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:2px 2px 0 rgba(196,54,112,.2);filter:drop-shadow(0 2px 4px rgba(0,0,0,.1))}
+
+    /* Cards */
+    .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:2rem}
+    .card{background:rgba(251,244,235,.8);backdrop-filter:blur(10px);border-radius:25px;padding:2rem;box-shadow:0 8px 32px rgba(242,131,175,.2);border:2px solid rgba(242,131,175,.1);transition:.3s;position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--tickle-pink),var(--sunset),var(--raspberry-rose));border-radius:25px 25px 0 0}
+    .card:hover{transform:translateY(-10px);box-shadow:0 15px 40px rgba(242,131,175,.3);background:rgba(251,244,235,.95)}
+    .card-icon{font-size:2.5rem;margin-bottom:1rem;display:block}
+    .card-title{font-family:'Fredoka One',cursive;font-size:1.5rem;color:var(--raspberry-rose);margin-bottom:1rem}
+    .card-content{color:#666;line-height:1.6}
+
+    /* Projects */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2rem;margin-top:2rem}
+    .project-card{background:rgba(251,244,235,.9);border-radius:20px;overflow:hidden;box-shadow:0 8px 25px rgba(242,131,175,.2);transition:.3s;border:2px solid rgba(242,131,175,.1)}
+    .project-card:hover{transform:translateY(-8px);box-shadow:0 15px 35px rgba(242,131,175,.3)}
+    .project-image{height:200px;background:linear-gradient(135deg,var(--blush),var(--sunset));display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--raspberry-rose)}
+    .project-info{padding:1.5rem}
+    .project-title{font-family:'Fredoka One',cursive;font-size:1.3rem;color:var(--raspberry-rose);margin-bottom:.5rem}
+    .project-description{color:#666;margin-bottom:1rem;line-height:1.5}
+    .project-link{display:inline-block;padding:.5rem 1rem;background:linear-gradient(45deg,var(--tickle-pink),var(--raspberry-rose));color:#fff;text-decoration:none;border-radius:20px;font-size:.9rem;font-weight:500;transition:.3s}
+    .project-link:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(242,131,175,.4)}
+
+    /* Contact */
+    .contact-form{max-width:600px;margin:0 auto;background:rgba(251,244,235,.8);padding:2rem;border-radius:25px;box-shadow:0 8px 32px rgba(242,131,175,.2);backdrop-filter:blur(10px)}
+    .form-group{margin-bottom:1.5rem}
+    .form-label{display:block;margin-bottom:.5rem;color:var(--raspberry-rose);font-weight:500}
+    .form-input{width:100%;padding:1rem;border:2px solid rgba(242,131,175,.2);border-radius:15px;background:rgba(255,255,255,.8);font-family:'Inter',sans-serif;transition:.3s}
+    .form-input:focus{outline:none;border-color:var(--tickle-pink);box-shadow:0 0 0 3px rgba(242,131,175,.1)}
+    .form-textarea{resize:vertical;min-height:120px}
+    .submit-btn{width:100%;padding:1rem;background:linear-gradient(45deg,var(--tickle-pink),var(--raspberry-rose));color:#fff;border:none;border-radius:15px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:.3s;font-family:'Inter',sans-serif}
+    .submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(242,131,175,.4)}
+
+    /* Footer */
+    .footer{text-align:center;padding:2rem;background:rgba(251,244,235,.9);color:var(--raspberry-rose)}
+    .footer-icons a{color:var(--tickle-pink);margin:0 .5rem;font-size:1.6rem;transition:transform .3s,color .3s}
+    .footer-icons a:hover{color:var(--raspberry-rose);transform:scale(1.2)}
+
+    /* Responsive */
+    @media (max-width:768px){
+      .nav{gap:1rem;flex-wrap:wrap}
+      .hero{padding:1rem}
+      .section{padding:2rem 1rem}
+      .cards-grid,.projects-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Decorative Elements -->
+  <div class="floating-decor star" style="top:10%;left:10%;font-size:2rem">⭐</div>
+  <div class="floating-decor cherry" style="top:20%;right:15%;font-size:1.5rem">🍒</div>
+  <div class="floating-decor spark" style="top:60%;left:5%;font-size:1.8rem">✨</div>
+  <div class="floating-decor star" style="top:80%;right:10%;font-size:1.2rem">⭐</div>
+  <div class="floating-decor cherry" style="top:40%;right:5%;font-size:2rem">🍒</div>
+  <div class="floating-decor spark" style="top:30%;left:80%;font-size:1.5rem">✨</div>
+
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+ <!-- HERO (replace this part in your file) -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <div class="profile-pic">
+      <!-- Put amya.png in the same folder as this HTML file -->
+      <img src="amya.png" alt="Amya Watkins headshot" loading="eager" width="220" height="220" />
+    </div>
+    <h1 class="hero-title">Amya Watkins</h1>
+    <p class="hero-subtitle">✨ Front-End Developer & UX Designer • Smyrna, GA ✨</p>
+    <a href="#contact" class="cta-button">Let’s Work Together 🌟</a>
+  </div>
+</section>
+
+
+  <!-- About -->
+  <section id="about" class="section">
+    <h2 class="section-title">About Me 💖</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🎨</span>
+        <h3 class="card-title">Creative Design</h3>
+        <p class="card-content">
+          Senior Digital Media Software Engineering student blending design + code.
+          I craft bright, accessible interfaces with motion and personality.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card-icon">💻</span>
+        <h3 class="card-title">Frontend Focus</h3>
+        <p class="card-content">
+          HTML, CSS, JavaScript, Java/Swing, and SQL. I care about clean UI,
+          responsiveness, and performance.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌟</span>
+        <h3 class="card-title">UX Mindset</h3>
+        <p class="card-content">
+          Wireframing, prototyping, usability testing, and accessibility with Figma
+          to keep real users at the center.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="section">
+    <h2 class="section-title">Education 📚</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🎓</span>
+        <h3 class="card-title">Ferris State University</h3>
+        <p class="card-content">
+          B.S. Software Engineering • 2022–Present
+        </p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🏆</span>
+        <h3 class="card-title">Certificates</h3>
+        <p class="card-content">
+          Google UX Design (Apr 2025)<br/>
+          Adobe Creative Skills for Marketers (Jan 2025)
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="section">
+    <h2 class="section-title">Experience 💼</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🏥</span>
+        <h3 class="card-title">IT Specialist — Ferris State University</h3>
+        <p class="card-content">
+          Jun 2022 – Oct 2024 • Managed inventory  databases by entering, updating, and reconciling data as needed to ensure accurate records and timely reporting
+• Utilize ticket tracking software to log, monitor, and manage inventory movements, assignments, and statuses efficiently
+
+        </p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🚗</span>
+        <h3 class="card-title">Marketing Intern — Aptiv</h3>
+        <p class="card-content">
+          Jun 2023 – Aug 2023 • Assisted  in the development and implementation of marketing campaigns across various channels, including digital, social media, print, and events.
+• Conducted  market research to identify target audiences, competitors, and industry trends.
+
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <h2 class="section-title">Projects 🌈</h2>
+    <div class="projects-grid">
+
+      <!-- Refreshed Probiotic Soda -->
+      <div class="project-card">
+        <div class="project-image">🧃</div>
+        <div class="project-info">
+          <h3 class="project-title">Refreshed Probiotic Soda – 3D Carousel UI Design (Figma)</h3>
+          <p class="project-description">
+            Interactive 3D carousel with smooth transitions, dynamic rotation, and bold visuals to match a vibrant brand.
+          </p>
+          <a class="project-link" target="_blank" rel="noopener"
+             href="https://www.figma.com/proto/M0G1ARuvJFHCIIFBCPrPlg/Refreshed?t=bmlJXbnje4VsiHqJ-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&node-id=2-2&starting-point-node-id=2%3A2&show-proto-sidebar=1">
+            View Prototype
+          </a>
+        </div>
+      </div>
+
+      <!-- Mindnest -->
+      <div class="project-card">
+        <div class="project-image">🧠</div>
+        <div class="project-info">
+          <h3 class="project-title">Mindnest – Mental Health App Prototype (Figma)</h3>
+          <p class="project-description">
+            Calming, accessible mobile prototype with mood tracking, guided journaling, and self-care flows.
+          </p>
+          <a class="project-link" target="_blank" rel="noopener"
+             href="https://www.figma.com/proto/JtMmthD0biKAElpL1CXA2i/Good-Health-and-Well-being?node-id=1-3&p=f&t=jpO1NjHoO1hN70gt-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A3">
+            View Prototype
+          </a>
+        </div>
+      </div>
+
+      <!-- Path in Motion -->
+      <div class="project-card">
+        <div class="project-image">📣</div>
+        <div class="project-info">
+          <h3 class="project-title">Path in Motion</h3>
+          <p class="project-description">
+            Instagram page sharing internships, entry-level jobs, scholarships, and career advice.
+          </p>
+          <a class="project-link" target="_blank" rel="noopener"
+             href="https://www.instagram.com/pathinmotion/?igsh=MXJrNzJzeGoycmc1dg%3D%3D#">
+            Visit Instagram
+          </a>
+        </div>
+      </div>
+
+      <!-- Skeleton Marketing Brief -->
+      <div class="project-card">
+        <div class="project-image">📝</div>
+        <div class="project-info">
+          <h3 class="project-title">Skeleton Marketing Brief — TravelEase</h3>
+          <p class="project-description">
+            Strategic brief with audience segmentation, key messaging, and channel mix across paid/owned/earned.
+          </p>
+          <a class="project-link" target="_blank" rel="noopener"
+             href="https://new.express.adobe.com/publishedV2/urn:aaid:sc:US:2a5f6157-085f-48bd-a08f-c32754cc61e5?promoid=Y69SGM5H&mv=other">
+            Read Brief
+          </a>
+        </div>
+      </div>
+
+      <!-- Brand Guide -->
+      <div class="project-card">
+        <div class="project-image">🎨</div>
+        <div class="project-info">
+          <h3 class="project-title">TravelEase Brand Guide</h3>
+          <p class="project-description">
+            Logo, typography, and tone system aligned to a friendly, personalized travel mission.
+          </p>
+          <a class="project-link" target="_blank" rel="noopener"
+             href="https://new.express.adobe.com/publishedV2/urn:aaid:sc:US:1ee6bf81-f788-45ba-8ef0-830b3aa024be">
+            View Guide
+          </a>
+        </div>
+      </div>
+
+      <!-- Designs folder -->
+      <div class="project-card">
+        <div class="project-image">🗂️</div>
+        <div class="project-info">
+          <h3 class="project-title">Designs — Personal & Coursework</h3>
+          <p class="project-description">
+            A collection of design work across class projects and personal explorations.
+          </p>
+          <a class="project-link" target="_blank" rel="noopener"
+             href="https://drive.google.com/drive/folders/12QYLuRTxPMjb6VoYipXnLbwtjQc6GmCr">
+            Browse Folder
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <h2 class="section-title">Let's Connect! 💌</h2>
+
+    <!-- Formspree version: replace the action URL with your Formspree endpoint -->
+    <form class="contact-form" action="https://formspree.io/f/your-endpoint" method="POST">
+      <div class="form-group">
+        <label for="name" class="form-label">Your Name ✨</label>
+        <input type="text" id="name" name="name" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label for="email" class="form-label">Email Address 📧</label>
+        <input type="email" id="email" name="_replyto" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label for="message" class="form-label">Your Message 💭</label>
+        <textarea id="message" name="message" class="form-input form-textarea" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Message 🚀</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Made with 💖 by Amya Watkins • 2025</p>
+    <p class="footer-icons">
+      <a href="mailto:watkinsamya03@gmail.com" aria-label="Email Amya"><i class="fas fa-envelope"></i></a>
+      <a href="tel:13135880019" aria-label="Call Amya"><i class="fas fa-phone"></i></a>
+      <a href="https://www.linkedin.com/in/amya-watkins-4b1025193" target="_blank" rel="noopener" aria-label="Amya on LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </p>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        const t=document.querySelector(a.getAttribute('href'));
+        if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}
+      });
+    });
+
+    // Parallax float
+    window.addEventListener('scroll',()=>{
+      const y=window.pageYOffset;
+      document.querySelectorAll('.floating-decor').forEach((el,i)=>{
+        const s=0.5+(i*0.1);
+        el.style.transform=`translateY(${y*s}px)`;
+      });
+    });
+
+    // Hover lift
+    document.querySelectorAll('.card,.project-card').forEach(card=>{
+      card.addEventListener('mouseenter',()=>card.style.transform='translateY(-10px) scale(1.02)');
+      card.addEventListener('mouseleave',()=>card.style.transform='translateY(0) scale(1)');
+    });
+  </script>
+</body>
+</html>
+
