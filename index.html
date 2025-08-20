@@ -105,27 +105,25 @@
   <!-- Header -->
   <header class="header">
     <nav class="nav">
-      <a href="#home" class="nav-link">Home</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#experience" class="nav-link">Experience</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#home" class="nav-link" target="_blank" rel="noopener">Home</a>
+      <a href="#about" class="nav-link" target="_blank" rel="noopener">About</a>
+      <a href="#experience" class="nav-link" target="_blank" rel="noopener">Experience</a>
+      <a href="#projects" class="nav-link" target="_blank" rel="noopener">Projects</a>
+      <a href="#contact" class="nav-link" target="_blank" rel="noopener">Contact</a>
     </nav>
   </header>
 
- <!-- HERO (replace this part in your file) -->
-<section id="home" class="hero">
-  <div class="hero-content">
-    <div class="profile-pic">
-      <!-- Put amya.png in the same folder as this HTML file -->
-      <img src="amya.png" alt="Amya Watkins headshot" loading="eager" width="220" height="220" />
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="profile-pic">
+        <img src="amya.png" alt="Amya Watkins headshot" loading="eager" width="220" height="220" />
+      </div>
+      <h1 class="hero-title">Amya Watkins</h1>
+      <p class="hero-subtitle">✨ Front-End Developer & UX Designer • Smyrna, GA ✨</p>
+      <a href="#contact" class="cta-button">Let’s Work Together 🌟</a>
     </div>
-    <h1 class="hero-title">Amya Watkins</h1>
-    <p class="hero-subtitle">✨ Front-End Developer & UX Designer • Smyrna, GA ✨</p>
-    <a href="#contact" class="cta-button">Let’s Work Together 🌟</a>
-  </div>
-</section>
-
+  </section>
 
   <!-- About -->
   <section id="about" class="section">
@@ -190,7 +188,6 @@
         <p class="card-content">
           Jun 2022 – Oct 2024 • Managed inventory  databases by entering, updating, and reconciling data as needed to ensure accurate records and timely reporting
 • Utilize ticket tracking software to log, monitor, and manage inventory movements, assignments, and statuses efficiently
-
         </p>
       </div>
       <div class="card">
@@ -199,7 +196,6 @@
         <p class="card-content">
           Jun 2023 – Aug 2023 • Assisted  in the development and implementation of marketing campaigns across various channels, including digital, social media, print, and events.
 • Conducted  market research to identify target audiences, competitors, and industry trends.
-
         </p>
       </div>
     </div>
@@ -209,8 +205,6 @@
   <section id="projects" class="section">
     <h2 class="section-title">Projects 🌈</h2>
     <div class="projects-grid">
-
-      <!-- Refreshed Probiotic Soda -->
       <div class="project-card">
         <div class="project-image">🧃</div>
         <div class="project-info">
@@ -225,7 +219,6 @@
         </div>
       </div>
 
-      <!-- Mindnest -->
       <div class="project-card">
         <div class="project-image">🧠</div>
         <div class="project-info">
@@ -240,7 +233,6 @@
         </div>
       </div>
 
-      <!-- Path in Motion -->
       <div class="project-card">
         <div class="project-image">📣</div>
         <div class="project-info">
@@ -255,7 +247,6 @@
         </div>
       </div>
 
-      <!-- Skeleton Marketing Brief -->
       <div class="project-card">
         <div class="project-image">📝</div>
         <div class="project-info">
@@ -270,7 +261,6 @@
         </div>
       </div>
 
-      <!-- Brand Guide -->
       <div class="project-card">
         <div class="project-image">🎨</div>
         <div class="project-info">
@@ -285,7 +275,6 @@
         </div>
       </div>
 
-      <!-- Designs folder -->
       <div class="project-card">
         <div class="project-image">🗂️</div>
         <div class="project-info">
@@ -299,7 +288,6 @@
           </a>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -307,7 +295,7 @@
   <section id="contact" class="section">
     <h2 class="section-title">Let's Connect! 💌</h2>
 
-    <!-- Formspree version: replace the action URL with your Formspree endpoint -->
+    <!-- Replace action with your Formspree endpoint -->
     <form class="contact-form" action="https://formspree.io/f/your-endpoint" method="POST">
       <div class="form-group">
         <label for="name" class="form-label">Your Name ✨</label>
@@ -336,30 +324,32 @@
   </footer>
 
   <script>
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{
+    // Smooth scroll (only for same-tab clicks)
+    document.querySelectorAll('a.nav-link[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        // New-tab or modifier-key clicks: let browser handle it
+        if (a.target === '_blank' || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+
         e.preventDefault();
-        const t=document.querySelector(a.getAttribute('href'));
-        if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
     // Parallax float
-    window.addEventListener('scroll',()=>{
-      const y=window.pageYOffset;
-      document.querySelectorAll('.floating-decor').forEach((el,i)=>{
-        const s=0.5+(i*0.1);
-        el.style.transform=`translateY(${y*s}px)`;
+    window.addEventListener('scroll', () => {
+      const y = window.pageYOffset;
+      document.querySelectorAll('.floating-decor').forEach((el, i) => {
+        const s = 0.5 + (i * 0.1);
+        el.style.transform = `translateY(${y * s}px)`;
       });
     });
 
     // Hover lift
-    document.querySelectorAll('.card,.project-card').forEach(card=>{
-      card.addEventListener('mouseenter',()=>card.style.transform='translateY(-10px) scale(1.02)');
-      card.addEventListener('mouseleave',()=>card.style.transform='translateY(0) scale(1)');
+    document.querySelectorAll('.card,.project-card').forEach(card => {
+      card.addEventListener('mouseenter', () => card.style.transform = 'translateY(-10px) scale(1.02)');
+      card.addEventListener('mouseleave', () => card.style.transform = 'translateY(0) scale(1)');
     });
   </script>
 </body>
 </html>
-
