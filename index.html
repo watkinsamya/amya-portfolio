@@ -15,8 +15,16 @@
     :root{
       --tickle-pink:#F283AF;--champagne:#FBF4EB;--blush:#FBD9E5;
       --cherry-blossom:#FBD9E5;--raspberry-rose:#C43670;--sunset:#F5CC97;
+      --header-h:74px;
     }
+
+    /* smooth scrolling */
+    html{scroll-behavior:smooth}
+
     body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,var(--champagne) 0%,var(--blush) 50%,var(--sunset) 100%);min-height:100vh;overflow-x:hidden}
+
+    /* Offset for fixed header so anchors don't hide underneath */
+    .hero, .section { scroll-margin-top: calc(var(--header-h) + 12px); }
 
     /* Floating bits */
     .floating-decor{position:fixed;pointer-events:none;z-index:1}
@@ -27,13 +35,13 @@
     @keyframes sparkle{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.2)}}
 
     /* Header */
-    .header{position:fixed;top:0;width:100%;background:rgba(251,244,235,.9);backdrop-filter:blur(10px);z-index:100;padding:1rem 2rem;box-shadow:0 4px 20px rgba(196,54,112,.1)}
-    .nav{display:flex;justify-content:center;gap:2rem}
+    .header{position:fixed;top:0;left:0;right:0;height:var(--header-h);display:flex;align-items:center;background:rgba(251,244,235,.9);backdrop-filter:blur(10px);z-index:100;padding:0 2rem;box-shadow:0 4px 20px rgba(196,54,112,.1)}
+    .nav{display:flex;justify-content:center;gap:2rem;margin:0 auto}
     .nav-link{text-decoration:none;color:var(--raspberry-rose);font-weight:500;padding:.5rem 1rem;border-radius:20px;transition:.3s}
     .nav-link:hover{background:linear-gradient(45deg,var(--tickle-pink),var(--raspberry-rose));color:#fff;transform:translateY(-2px);box-shadow:0 4px 15px rgba(242,131,175,.4)}
 
     /* Hero */
-    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative}
+    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:calc(var(--header-h) + 2rem) 2rem 2rem;position:relative}
     .hero-content{max-width:800px;z-index:10}
     .profile-pic{width:220px;height:220px;border-radius:50%;background:linear-gradient(45deg,var(--tickle-pink),var(--sunset));padding:8px;margin:0 auto 2rem;box-shadow:0 10px 30px rgba(242,131,175,.3);animation:pulse 3s ease-in-out infinite}
     .profile-pic img{width:100%;height:100%;border-radius:50%;object-fit:cover;background:var(--champagne)}
@@ -87,7 +95,7 @@
     /* Responsive */
     @media (max-width:768px){
       .nav{gap:1rem;flex-wrap:wrap}
-      .hero{padding:1rem}
+      .hero{padding:calc(var(--header-h) + 1rem) 1rem 1rem}
       .section{padding:2rem 1rem}
       .cards-grid,.projects-grid{grid-template-columns:1fr}
     }
@@ -105,11 +113,11 @@
   <!-- Header -->
   <header class="header">
     <nav class="nav">
-      <a href="#home" class="nav-link" target="_blank" rel="noopener">Home</a>
-      <a href="#about" class="nav-link" target="_blank" rel="noopener">About</a>
-      <a href="#experience" class="nav-link" target="_blank" rel="noopener">Experience</a>
-      <a href="#projects" class="nav-link" target="_blank" rel="noopener">Projects</a>
-      <a href="#contact" class="nav-link" target="_blank" rel="noopener">Contact</a>
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </nav>
   </header>
 
@@ -324,18 +332,6 @@
   </footer>
 
   <script>
-    // Smooth scroll (only for same-tab clicks)
-    document.querySelectorAll('a.nav-link[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        // New-tab or modifier-key clicks: let browser handle it
-        if (a.target === '_blank' || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
-
-        e.preventDefault();
-        const t = document.querySelector(a.getAttribute('href'));
-        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
     // Parallax float
     window.addEventListener('scroll', () => {
       const y = window.pageYOffset;
